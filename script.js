@@ -20656,3 +20656,41 @@ Webflow.require("ix2").init({
   },
 });
 
+
+document.querySelector(".menu-button").addEventListener("click", () => {
+  gsap.to("#menu-side", {
+    right: 0,
+    duration: 0.3,
+    ease: "power2.inOut"
+  })
+
+})
+
+document.querySelector(".close-button").addEventListener("click", () => {
+  gsap.to("#menu-side", {
+    right: '-100%',
+    duration: 0.3,
+    ease: "power2.inOut"
+  })
+})
+
+document.querySelectorAll(".link-wrapper").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelector(".close-button").click()
+  })
+})
+
+// Lenis Config
+const lenis = new Lenis({
+  lerp:0.1
+});
+
+
+
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
